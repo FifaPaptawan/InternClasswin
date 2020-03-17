@@ -27,12 +27,20 @@ function Tasklist({tasks, loading, actions}) {
         );
     }
 
-    if (tasks.lenght === 0) {
-        return <div className="List-items">no-items</div>
+    if (tasks.length === 0) {
+        return(
+            <div className="list-items">
+                <div className ="wrapper-message" >
+                    <span className="icon-check"/>
+                    <div className="title-message">You have no tasks</div>  
+                    <div className="subtitle-message">Sit back and relax</div>
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className="List-items">
+        <div className="list-items">
             {tasks.map(task => (
                 <Task task={task} {...actions} /> 
             ))}
