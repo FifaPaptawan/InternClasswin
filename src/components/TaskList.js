@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Task from "./Task";
 
 function Tasklist({tasks, loading, actions}) {
@@ -38,14 +39,26 @@ function Tasklist({tasks, loading, actions}) {
             </div>
         );
     }
-
+    const tasksInOrder = [
+        ...tasks.filter(task => task.state === "TASK_PINNED"),
+        ...tasks.filter(task => task.state !== "TASK_PINNED")
+    ]
     return (
         <div className="list-items">
-            {tasks.map(task => (
+            {tasksInOrder.map(task => (
                 <Task task={task} {...actions} /> 
             ))}
         </div>
     );
 }
+Tasklist.propTypes = {
+    loading: PropTypes.bool,
+    tasks: PropTypes.arrayOf(Task.propTypes.task)
+};
 
+Tasklist.defaultProps = {
+    loading: false,
+    tasks: []
+};
+      
 export default Tasklist
