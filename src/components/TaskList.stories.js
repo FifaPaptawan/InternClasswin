@@ -21,3 +21,5 @@ const tasks = [
 ];
 
 export const Default = () => <TaskList tasks={tasks} loading={false} actions={actionsData}/>;
+export const Loading = () => <TaskList loading={true} />;
+export const Empty = () => <TaskList tasks={[]} />;
